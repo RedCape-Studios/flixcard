@@ -4,15 +4,14 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leading: IconButton(
-        icon: Icon(Icons.menu),
-        onPressed: () => null,
-      ),
       title: Align(alignment: Alignment.center, child: TitleText()),
       actions: [
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () => Navigator.popAndPushNamed(context, '/search'),
+        Hero(
+          tag: 'tag',
+          child: IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () => Navigator.popAndPushNamed(context, '/search'),
+          ),
         ),
       ],
     );
