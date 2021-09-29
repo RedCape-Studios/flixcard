@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget {
+class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      floating: true,
       title: Align(alignment: Alignment.center, child: TitleText()),
       actions: [
         Hero(
-          tag: 'tag',
+          tag: 'search',
           child: IconButton(
             icon: Icon(Icons.search),
-            onPressed: () => Navigator.popAndPushNamed(context, '/search'),
+            onPressed: () => Navigator.pushNamed(context, '/search'),
           ),
         ),
       ],

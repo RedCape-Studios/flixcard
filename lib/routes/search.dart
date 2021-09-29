@@ -29,7 +29,7 @@ class SearchRoute extends StatelessWidget {
                     flex: 20,
                     child: Padding(
                       padding: EdgeInsets.only(right: 10),
-                      child: CustomSearchField(),
+                      child: SearchFieldWidget(),
                     ),
                   )
                 ],

@@ -7,10 +7,14 @@ class HomeRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: CustomDrawer(),
-        body: CustomScrollView(
-          slivers: [CustomAppBar()],
-        ));
+      drawer: DrawerWidget(),
+      body: CustomScrollView(
+        slivers: [
+          AppBarWidget(),
+          Content(),
+        ],
+      ),
+    );
   }
 }
 
@@ -20,13 +24,17 @@ class Content extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
-          CustomTab(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
         ],
       ),
     );

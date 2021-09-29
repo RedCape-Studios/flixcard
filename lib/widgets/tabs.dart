@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomTab extends StatelessWidget {
+class ContentTabWidget extends StatelessWidget {
   StatelessWidget child;
 
-  CustomTab({required this.child});
+  ContentTabWidget({required this.child});
 
   @override
   Widget build(BuildContext context) {

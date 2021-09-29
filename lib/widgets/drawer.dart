@@ -2,7 +2,7 @@ import 'package:black_tortoise/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CustomDrawer extends StatelessWidget {
+class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(

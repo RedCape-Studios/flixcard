@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomSearchField extends StatelessWidget {
-
+class SearchFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
