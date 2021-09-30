@@ -1,6 +1,7 @@
+import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/home.dart';
-import 'package:black_tortoise/routes/settings.dart';
+import 'package:black_tortoise/routes/pages/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'routes/search.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeModel()),
+        ChangeNotifierProvider(create: (context) => PageModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (builder, model, child) {
@@ -23,7 +25,6 @@ class MyApp extends StatelessWidget {
             routes: {
               '/home': (context) => HomeRoute(),
               '/search': (context) => SearchRoute(),
-              '/settings': (context) => SettingsRoute(),
             },
             home: HomeRoute(),
           );

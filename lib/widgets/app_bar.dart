@@ -5,6 +5,10 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
+      leading: IconButton(
+        icon: Icon(Icons.star_border_outlined),
+        onPressed: () => null,
+      ),
       title: Align(alignment: Alignment.center, child: TitleText()),
       actions: [
         Hero(

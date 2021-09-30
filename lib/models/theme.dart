@@ -7,6 +7,7 @@ final TextStyle textStyle = TextStyle(
 
 final Color globalDarkColor = Color.fromARGB(255, 39, 42, 67);
 final Color secondaryDarkColor = Color.fromARGB(255, 20, 23, 51);
+final Color accentDarkColor = Color.fromARGB(255, 111, 116, 252);
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
@@ -34,19 +35,23 @@ final ThemeData lightTheme = ThemeData(
 
 class ThemeModel extends ChangeNotifier {
   var theme = darkTheme;
+  var type = ThemeType.dark;
   var globalColor = globalDarkColor;
   var secondaryColor = secondaryDarkColor;
+  var accentColor = accentDarkColor;
 
   void setTheme(ThemeType type) {
     switch (type) {
       case ThemeType.dark:
         {
           theme = darkTheme;
+          type = ThemeType.dark;
           break;
         }
       case ThemeType.light:
         {
           theme = lightTheme;
+          type = ThemeType.light;
           break;
         }
     }
