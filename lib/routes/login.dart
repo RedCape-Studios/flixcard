@@ -125,33 +125,6 @@ class SignUp extends State<SignUpRoute> {
                       }
                     }),
               )),
-              // Align(
-              //     alignment: Alignment.bottomRight,
-              //     child: Padding(
-              //       padding: EdgeInsets.only(right: 10, top: 20, bottom: 10),
-              //       child: GestureDetector(
-              //         onTap: () {
-              //           // Navigator.pop(context);
-              //           Navigator.push(context,
-              //               MaterialPageRoute(builder: (context) {
-              //             return Scaffold(
-              //                 appBar: AppBar(
-              //                   title: Text("Login page:",
-              //                       style: TextStyle(
-              //                         fontSize: 25,
-              //                       )),
-              //                 ),
-              //                 body: LogInRoute());
-              //           }));
-              //         },
-              //         child: Text('Existing account? log in',
-              //             style: TextStyle(
-              //               decoration: TextDecoration.underline,
-              //               color: Colors.blue,
-              //               fontSize: 12,
-              //             )),
-              //       ),
-              //     ))
             ])));
   }
 }
@@ -167,8 +140,8 @@ class LogInUp extends State<LogInRoute> {
   String gmail = "";
   String password = "";
   var _formKey = GlobalKey<FormState>();
-  static TextEditingController gmailController = TextEditingController();
-  static TextEditingController passwordController = TextEditingController();
+  static TextEditingController gmailController1 = TextEditingController();
+  static TextEditingController passwordController1 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -181,16 +154,16 @@ class LogInUp extends State<LogInRoute> {
                   alignment: Alignment.center,
                   child: Padding(
                       padding: EdgeInsets.only(top: 80, bottom: 50),
-                      child: Text("WELCOME BACK TO FLIXCARD",
+                      child: Text("WELCOME TO FLIXCARD",
                           style: TextStyle(fontSize: 20)))),
               Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 2),
-                  child: Text("    Sign up:")),
+                  child: Text("    Sign in:")),
               Padding(
                   padding: EdgeInsets.only(
                       top: 7.0, bottom: 7.0, left: 10.0, right: 10.0),
                   child: TextFormField(
-                    controller: gmailController,
+                    controller: gmailController1,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return "please enter your gmail id";
@@ -214,7 +187,7 @@ class LogInUp extends State<LogInRoute> {
                     top: 7.0, bottom: 7.0, left: 10.0, right: 10.0),
                 child: TextFormField(
                   obscureText: true,
-                  controller: passwordController,
+                  controller: passwordController1,
                   validator: (String? value) {
                     if (value!.isEmpty) {
                       return "please enter your password";
@@ -240,7 +213,7 @@ class LogInUp extends State<LogInRoute> {
                 padding:
                     EdgeInsets.only(top: 3, bottom: 240, left: 10, right: 10),
                 child: ElevatedButton(
-                    child: Text("log in+",
+                    child: Text("sign in+",
                         textDirection: TextDirection.ltr,
                         style: TextStyle(
                           decoration: TextDecoration.none,
@@ -260,15 +233,14 @@ class LogInUp extends State<LogInRoute> {
               Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.only(right: 10, top: 20, bottom: 10),
+                    padding: EdgeInsets.only(bottom: 30),
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.pop(context);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return Scaffold(
                               appBar: AppBar(
-                                title: Text("Login page:",
+                                title: Text("Login page",
                                     style: TextStyle(
                                       fontSize: 25,
                                     )),

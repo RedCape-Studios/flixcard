@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             title: 'FlixCard',
             theme: model.theme,
             routes: {
-              '/login': (context) => SignUpRoute(),
+              '/login': (context) => LogInRoute(),
               '/home': (context) => HomeRoute(),
               '/search': (context) => SearchRoute(),
             },
