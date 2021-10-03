@@ -5,9 +5,12 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      leading: IconButton(
-        icon: Icon(Icons.star_border_outlined),
-        onPressed: () => null,
+      leading: Hero(
+        tag: 'fav',
+        child: IconButton(
+          icon: Icon(Icons.star_border_outlined),
+          onPressed: () => Navigator.of(context).pushNamed('/favourites'),
+        ),
       ),
       title: Align(alignment: Alignment.center, child: TitleText()),
       actions: [
@@ -15,10 +18,13 @@ class AppBarWidget extends StatelessWidget {
           tag: 'search',
           child: IconButton(
             icon: Icon(Icons.search),
-            onPressed: () => Navigator.pushNamed(context, '/search'),
+            onPressed: () => Navigator.of(context).pushNamed('/search'),
           ),
         ),
       ],
+      onStretchTrigger: () async {
+        print('object');
+      },
     );
   }
 }
@@ -31,12 +37,11 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'FlixCard',
-      style: TextStyle(
+    return Text('FlixCard',
+        style: TextStyle(
           fontSize: 21,
           fontWeight: FontWeight.bold,
-          foreground: Paint()..shader = textGradient),
-    );
+          foreground: Paint()..shader = textGradient,
+        ));
   }
 }

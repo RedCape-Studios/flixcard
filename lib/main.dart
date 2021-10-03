@@ -1,5 +1,6 @@
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
+import 'package:black_tortoise/routes/favourites.dart';
 import 'package:black_tortoise/routes/home.dart';
 import 'package:black_tortoise/routes/pages/settings.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
             routes: {
               '/home': (context) => HomeRoute(),
               '/search': (context) => SearchRoute(),
+              '/favourites': (context) => FavouritesRoute(),
             },
             home: HomeRoute(),
           );

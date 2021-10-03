@@ -6,23 +6,21 @@ import 'package:flutter/material.dart';
 class GamesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SliverList(
-        delegate: SliverChildListDelegate(
-          [
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-            ContentTabWidget(child: TabContents()),
-          ],
-        ),
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+          ContentTabWidget(child: TabContents()),
+        ],
       ),
     );
   }
