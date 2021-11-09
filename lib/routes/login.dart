@@ -1,13 +1,23 @@
 import 'package:black_tortoise/backend/auth.dart';
 import 'package:black_tortoise/models/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class SignUpRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: SignUpBody()),
+      body: Stack(
+        children: [
+          // RiveAnimation.asset('lib/assets/animations/dark_bg.svg'),
+          SvgPicture.asset(
+            'lib/assets/images/dark_bg.svg',
+            fit: BoxFit.fill,
+          ),
+          SafeArea(child: SignUpBody()),
+        ],
+      ),
     );
   }
 }
