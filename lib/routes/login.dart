@@ -22,6 +22,17 @@ class _SignUpBodyState extends State<SignUpBody> {
 
   @override
   Widget build(BuildContext context) {
+    SnackBar errorSnackBar(String text) {
+      return SnackBar(
+        duration: Duration(milliseconds: 800),
+        content: Text(
+          text,
+          style: TextStyle(color: Colors.white, fontSize: 15),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
+
     return Consumer<LoginModel>(
       builder: (context, model, child) {
         return Padding(
@@ -59,7 +70,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                                   labelText: "Email",
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                      BorderRadius.circular(5.0))),
+                                          BorderRadius.circular(5.0))),
                             )),
                         Padding(
                           padding: EdgeInsets.only(
@@ -111,13 +122,23 @@ class _SignUpBodyState extends State<SignUpBody> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             if (model.login) {
-                              await Auth.signIn(model.emailController.text,
-                                  model.passwordController.text);
-                              Navigator.popAndPushNamed(context, '/home');
+                              if (await Auth.signIn(model.emailController.text,
+                                  model.passwordController.text)) {
+                                Navigator.popAndPushNamed(context, '/home');
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    errorSnackBar(
+                                        'Incorrect details entered.'));
+                              }
                             } else {
-                              await Auth.signUp(model.emailController.text,
-                                  model.passwordController.text);
-                              Navigator.popAndPushNamed(context, '/home');
+                              if (await Auth.signUp(model.emailController.text,
+                                  model.passwordController.text)) {
+                                Navigator.popAndPushNamed(context, '/home');
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    errorSnackBar(
+                                        'Unable to sign up. Please try again.'));
+                              }
                             }
                           }
                         },

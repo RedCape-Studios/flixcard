@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 enum ThemeType { dark, light }
 
@@ -13,8 +14,13 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: globalDarkColor,
   scaffoldBackgroundColor: globalDarkColor,
-  splashColor: Color.fromARGB(255, 111, 116, 252),
-  appBarTheme: AppBarTheme(color: Color.fromARGB(255, 20, 23, 51)),
+  splashColor: accentDarkColor,
+  appBarTheme: AppBarTheme(color: secondaryDarkColor),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: accentDarkColor,
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
   textTheme: TextTheme(
     headline1: textStyle,
     headline2: textStyle,
