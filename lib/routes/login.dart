@@ -1,3 +1,4 @@
+import 'package:black_tortoise/backend/auth.dart';
 import 'package:black_tortoise/models/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                                   labelText: "Email",
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                          BorderRadius.circular(5.0))),
+                                      BorderRadius.circular(5.0))),
                             )),
                         Padding(
                           padding: EdgeInsets.only(
@@ -107,11 +108,15 @@ class _SignUpBodyState extends State<SignUpBody> {
                               fontSize: 15.0,
                               color: Colors.black,
                             )),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             if (model.login) {
+                              await Auth.signIn(model.emailController.text,
+                                  model.passwordController.text);
                               Navigator.popAndPushNamed(context, '/home');
                             } else {
+                              await Auth.signUp(model.emailController.text,
+                                  model.passwordController.text);
                               Navigator.popAndPushNamed(context, '/home');
                             }
                           }

@@ -1,15 +1,21 @@
+import 'package:black_tortoise/backend/auth.dart';
 import 'package:black_tortoise/models/login.dart';
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/favourites.dart';
 import 'package:black_tortoise/routes/home.dart';
 import 'package:black_tortoise/routes/login.dart';
+import 'package:black_tortoise/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'routes/search.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Tokens.loadEnv();
+  Auth();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
