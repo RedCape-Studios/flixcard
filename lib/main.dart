@@ -1,14 +1,21 @@
+import 'package:black_tortoise/backend/auth.dart';
+import 'package:black_tortoise/models/login.dart';
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/favourites.dart';
 import 'package:black_tortoise/routes/home.dart';
-import 'package:black_tortoise/routes/pages/settings.dart';
+import 'package:black_tortoise/routes/login.dart';
+import 'package:black_tortoise/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'routes/search.dart';
-import 'package:black_tortoise/routes/login.dart';
 
-void main() => runApp(MyApp());
+import 'routes/search.dart';
+
+void main() {
+  Tokens.loadEnv();
+  Auth();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeModel()),
         ChangeNotifierProvider(create: (context) => PageModel()),
+        ChangeNotifierProvider(create: (context) => LoginModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (builder, model, child) {
@@ -24,21 +32,13 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'FlixCard',
             theme: model.theme,
+            initialRoute: '/login',
             routes: {
-              '/login': (context) => LogInRoute(),
+              '/login': (context) => SignUpRoute(),
               '/home': (context) => HomeRoute(),
               '/search': (context) => SearchRoute(),
               '/favourites': (context) => FavouritesRoute(),
             },
-            home: Scaffold(
-              appBar: AppBar(
-                title: Text("login page",
-                    style: TextStyle(
-                      fontSize: 25,
-                    )),
-              ),
-              body: LogInRoute(),
-            ),
           );
         },
       ),
