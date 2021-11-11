@@ -20,7 +20,7 @@ class _NavBarWidgetState extends State<NavBarWidget>
         fixedColor: model.accentColor,
         currentIndex: currentIndex,
         unselectedItemColor:
-            model.type == ThemeType.dark ? Colors.black : Colors.white,
+            model.type == ThemeType.dark ? Colors.white38 : Colors.white,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.games_outlined),
