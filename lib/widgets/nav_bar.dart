@@ -1,9 +1,5 @@
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
-import 'package:black_tortoise/routes/pages/games.dart';
-import 'package:black_tortoise/routes/pages/movies.dart';
-import 'package:black_tortoise/routes/pages/serials.dart';
-import 'package:black_tortoise/routes/pages/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContentTabWidget extends StatelessWidget {
-  StatelessWidget child;
+  final StatelessWidget child;
 
   ContentTabWidget({required this.child});
 

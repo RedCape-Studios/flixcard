@@ -3,12 +3,21 @@ import 'package:flutter/widgets.dart';
 
 enum ThemeType { dark, light }
 
-final TextStyle textStyle = TextStyle(
-    fontFamily: 'Montserrat', fontSize: 18, fontWeight: FontWeight.normal);
+final Color globalDarkColor = Color.fromARGB(255, 19, 19, 19);
+final Color secondaryDarkColor = Color.fromARGB(255, 19, 19, 19);
+final Color textDarkColor = Color.fromARGB(255, 245, 245, 245);
+final Color accentDarkColor = Color.fromARGB(255, 92, 90, 225);
 
-final Color globalDarkColor = Color.fromARGB(255, 39, 42, 67);
-final Color secondaryDarkColor = Color.fromARGB(255, 20, 23, 51);
-final Color accentDarkColor = Color.fromARGB(255, 111, 116, 252);
+final Color globalLightColor = Color.fromARGB(255, 136, 142, 188);
+final Color secondaryLightColor = Color.fromARGB(255, 229, 230, 250);
+final Color accentLightColor = Color.fromARGB(255, 111, 116, 252);
+
+final TextStyle darkTextStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 18,
+  fontWeight: FontWeight.normal,
+  color: textDarkColor,
+);
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
@@ -22,21 +31,34 @@ final ThemeData darkTheme = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
   textTheme: TextTheme(
-    headline1: textStyle,
-    headline2: textStyle,
-    headline3: textStyle,
-    headline4: textStyle,
-    headline5: textStyle,
-    headline6: textStyle,
+    headline1: darkTextStyle,
+    headline2: darkTextStyle,
+    headline3: darkTextStyle,
+    headline4: darkTextStyle,
+    headline5: darkTextStyle,
+    headline6: darkTextStyle,
   ),
 );
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: Color.fromARGB(255, 209, 210, 240),
-  splashColor: Color.fromARGB(255, 111, 116, 252),
-  scaffoldBackgroundColor: Color.fromARGB(255, 209, 210, 240),
-  appBarTheme: AppBarTheme(color: Color.fromARGB(255, 136, 142, 188)),
+  primaryColor: globalLightColor,
+  scaffoldBackgroundColor: globalLightColor,
+  splashColor: accentLightColor,
+  appBarTheme: AppBarTheme(color: secondaryLightColor),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: accentLightColor,
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
+  textTheme: TextTheme(
+    headline1: darkTextStyle,
+    headline2: darkTextStyle,
+    headline3: darkTextStyle,
+    headline4: darkTextStyle,
+    headline5: darkTextStyle,
+    headline6: darkTextStyle,
+  ),
 );
 
 class ThemeModel extends ChangeNotifier {
@@ -52,12 +74,18 @@ class ThemeModel extends ChangeNotifier {
         {
           theme = darkTheme;
           type = ThemeType.dark;
+          globalColor = globalDarkColor;
+          secondaryColor = secondaryDarkColor;
+          accentColor = accentDarkColor;
           break;
         }
       case ThemeType.light:
         {
           theme = lightTheme;
           type = ThemeType.light;
+          globalColor = globalLightColor;
+          secondaryColor = secondaryLightColor;
+          accentColor = accentLightColor;
           break;
         }
     }
