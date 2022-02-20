@@ -13,13 +13,17 @@ class AppBarWidget extends StatelessWidget {
           onPressed: () => Navigator.of(context).pushNamed('/favourites'),
         ),
       ),
-      title: Align(alignment: Alignment.center, child: TitleText()),
+      centerTitle: true,
+      title: TitleText(),
       actions: [
-        Hero(
-          tag: 'search',
-          child: IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => Navigator.of(context).pushNamed('/search'),
+        Padding(
+          padding: const EdgeInsets.only(right: 10.0),
+          child: Hero(
+            tag: 'search',
+            child: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () => Navigator.of(context).pushNamed('/search'),
+            ),
           ),
         ),
       ],
