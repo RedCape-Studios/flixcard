@@ -10,17 +10,18 @@ class LoginFormFieldWidget extends StatelessWidget {
   final ThemeModel model;
   final bool obscure;
 
-  LoginFormFieldWidget(
-      {required this.validator,
-      required this.controller,
-      required this.label,
-      required this.model,
-      this.obscure = false});
+  LoginFormFieldWidget({
+    required this.validator,
+    required this.controller,
+    required this.label,
+    required this.model,
+    this.obscure = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: model.accentColor,
+      cursorColor: accentPrimaryColor,
       strutStyle: StrutStyle(fontFamily: 'Montserrat'),
       obscureText: obscure,
       keyboardType: TextInputType.emailAddress,
@@ -29,23 +30,25 @@ class LoginFormFieldWidget extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white),
+        filled: true,
+        fillColor: model.secondaryColor,
+        labelStyle: TextStyle(color: model.textColor.withOpacity(0.6)),
         errorStyle: TextStyle(color: Colors.redAccent),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: model.accentColor),
-          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: accentPrimaryColor),
+          borderRadius: BorderRadius.circular(15),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.redAccent),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.redAccent),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
     );

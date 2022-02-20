@@ -8,7 +8,7 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
       child: Consumer<ThemeModel>(builder: (context, model, child) {
         return Ink(
-          color: model.globalColor,
+          color: model.primaryColor,
           child: CustomScrollView(
             slivers: [
               SliverList(

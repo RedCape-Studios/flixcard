@@ -2,30 +2,40 @@ import 'package:flutter/material.dart';
 
 enum ThemeType { dark, light }
 
-final Color globalDarkColor = Color.fromARGB(255, 19, 19, 19);
-final Color secondaryDarkColor = Color.fromARGB(255, 19, 19, 19);
-final Color textDarkColor = Color.fromARGB(255, 245, 245, 245);
-final Color accentDarkColor = Color.fromARGB(255, 92, 90, 225);
+final accentPrimaryColor = Color.fromARGB(255, 183, 21, 221);
+final accentSecondaryColor = Color.fromARGB(255, 210, 40, 166);
+final accentGradient = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [
+    accentPrimaryColor,
+    accentSecondaryColor,
+  ],
+);
 
-final Color globalLightColor = Color.fromARGB(255, 136, 142, 188);
-final Color secondaryLightColor = Color.fromARGB(255, 229, 230, 250);
-final Color accentLightColor = Color.fromARGB(255, 111, 116, 252);
+final primaryDarkColor = Color.fromARGB(255, 16, 16, 16);
+final secondaryDarkColor = Color.fromARGB(255, 23, 23, 23);
+final textDarkColor = Color.fromARGB(255, 245, 245, 245);
 
-final TextStyle darkTextStyle = TextStyle(
+final primaryLightColor = Color.fromARGB(255, 239, 239, 239);
+final secondaryLightColor = Color.fromARGB(255, 232, 232, 232);
+final textLightColor = Color.fromARGB(255, 5, 5, 5);
+
+final darkTextStyle = TextStyle(
   fontFamily: 'Montserrat',
   fontSize: 18,
   fontWeight: FontWeight.normal,
   color: textDarkColor,
 );
 
-final ThemeData darkTheme = ThemeData(
+final darkTheme = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: globalDarkColor,
-  scaffoldBackgroundColor: globalDarkColor,
-  splashColor: accentDarkColor,
+  primaryColor: primaryDarkColor,
+  scaffoldBackgroundColor: primaryDarkColor,
+  splashColor: accentPrimaryColor,
   appBarTheme: AppBarTheme(color: secondaryDarkColor),
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: accentDarkColor,
+    backgroundColor: accentPrimaryColor,
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
@@ -39,14 +49,14 @@ final ThemeData darkTheme = ThemeData(
   ),
 );
 
-final ThemeData lightTheme = ThemeData(
+final lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: globalLightColor,
-  scaffoldBackgroundColor: globalLightColor,
-  splashColor: accentLightColor,
+  primaryColor: primaryLightColor,
+  scaffoldBackgroundColor: primaryLightColor,
+  splashColor: accentPrimaryColor,
   appBarTheme: AppBarTheme(color: secondaryLightColor),
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: accentLightColor,
+    backgroundColor: accentPrimaryColor,
     behavior: SnackBarBehavior.floating,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
@@ -63,9 +73,9 @@ final ThemeData lightTheme = ThemeData(
 class ThemeModel extends ChangeNotifier {
   var theme = darkTheme;
   var type = ThemeType.dark;
-  var globalColor = globalDarkColor;
+  var primaryColor = primaryDarkColor;
   var secondaryColor = secondaryDarkColor;
-  var accentColor = accentDarkColor;
+  var textColor = textDarkColor;
 
   void setTheme(ThemeType type) {
     switch (type) {
@@ -73,18 +83,18 @@ class ThemeModel extends ChangeNotifier {
         {
           theme = darkTheme;
           type = ThemeType.dark;
-          globalColor = globalDarkColor;
+          primaryColor = primaryDarkColor;
           secondaryColor = secondaryDarkColor;
-          accentColor = accentDarkColor;
+          textColor = textDarkColor;
           break;
         }
       case ThemeType.light:
         {
           theme = lightTheme;
           type = ThemeType.light;
-          globalColor = globalLightColor;
+          primaryColor = primaryLightColor;
           secondaryColor = secondaryLightColor;
-          accentColor = accentLightColor;
+          textColor = textLightColor;
           break;
         }
     }

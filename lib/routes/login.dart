@@ -11,8 +11,9 @@ class SignUpRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(builder: (context, model, child) {
       return Scaffold(
-        backgroundColor: model.secondaryColor,
-        resizeToAvoidBottomInset: false,
+        backgroundColor: model.primaryColor,
+        // ! Check if sized correctly in 5.5" devices
+        // resizeToAvoidBottomInset: false,
         body: SafeArea(child: SignUpBody()),
       );
     });
@@ -27,19 +28,19 @@ class SignUpBody extends StatefulWidget {
 class _SignUpBodyState extends State<SignUpBody> {
   final _formKey = GlobalKey<FormState>();
 
+  SnackBar errorSnackBar(String text) {
+    return SnackBar(
+      duration: Duration(milliseconds: 800),
+      content: Text(
+        text,
+        style: TextStyle(color: Colors.white, fontSize: 15),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    SnackBar errorSnackBar(String text) {
-      return SnackBar(
-        duration: Duration(milliseconds: 800),
-        content: Text(
-          text,
-          style: TextStyle(color: Colors.white, fontSize: 15),
-          textAlign: TextAlign.center,
-        ),
-      );
-    }
-
     return Consumer2<LoginModel, ThemeModel>(
       builder: (context, loginModel, themeModel, child) {
         return Padding(
@@ -49,14 +50,16 @@ class _SignUpBodyState extends State<SignUpBody> {
               Flexible(
                 flex: 1,
                 child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 20, top: 10),
-                        child: Text(
-                          loginModel.login ? 'Log in' : 'Sign Up',
-                          style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
-                        ))),
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20, top: 10),
+                    child: Text(
+                      loginModel.isLogin ? 'Log in' : 'Sign Up',
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
               ),
               Flexible(
                 flex: 2,
@@ -70,12 +73,13 @@ class _SignUpBodyState extends State<SignUpBody> {
                               top: 7.0, left: 10.0, right: 10.0),
                           child: LoginFormFieldWidget(
                             controller: loginModel.emailController,
-                            validator: (String? value) {
+                            validator: (var value) {
                               if (value!.isEmpty) {
                                 return "Please enter your Email ID";
                               } else if (!(value.contains(RegExp(r'@|.com')))) {
                                 return "Email ID is not valid";
                               }
+                              return null;
                             },
                             label: 'Email',
                             model: themeModel,
@@ -89,6 +93,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             if (value!.isEmpty) {
                               return "Please enter your username";
                             }
+                            return null;
                           },
                           label: 'Username',
                           model: themeModel,
@@ -104,7 +109,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             if (value!.isEmpty) {
                               return "Please enter your password";
                             }
-                            return "";
+                            return null;
                           },
                           label: 'Password',
                           model: themeModel,
@@ -119,37 +124,33 @@ class _SignUpBodyState extends State<SignUpBody> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 20, bottom: 20),
+                      padding: const EdgeInsets.all(10),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(15),
                         child: Ink(
-                            width: 200,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color.fromARGB(255, 91, 89, 224),
-                                    Color.fromARGB(255, 126, 126, 236),
-                                  ],
-                                )),
-                            child: Center(
-                              child: Text(
-                                loginModel.login ? "Log in" : "Sign Up",
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.white,
-                                    backgroundColor: Colors.transparent),
+                          // width: 200,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: accentGradient,
+                          ),
+                          child: Center(
+                            child: Text(
+                              loginModel.isLogin ? "Log in" : "Sign Up",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                         onTap: () async {
                           if (_formKey.currentState!.validate()) {
-                            if (loginModel.login) {
+                            if (loginModel.isLogin) {
                               if (await Auth.signIn(
-                                  loginModel.emailController.text,
-                                  loginModel.passwordController.text)) {
+                                loginModel.emailController.text,
+                                loginModel.passwordController.text,
+                              )) {
                                 Navigator.popAndPushNamed(context, '/home');
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -164,7 +165,8 @@ class _SignUpBodyState extends State<SignUpBody> {
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   errorSnackBar(
-                                      'Unable to sign up. Please try again.'),
+                                    'Unable to sign up. Please try again.',
+                                  ),
                                 );
                               }
                             }
@@ -173,14 +175,14 @@ class _SignUpBodyState extends State<SignUpBody> {
                         },
                       ),
                     ),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 400),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: GestureDetector(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              loginModel.login
+                              loginModel.isLogin
                                   ? 'Don\'t have an account? Sign Up'
                                   : 'Have an account? Log in',
                             ),

@@ -17,7 +17,7 @@ class _NavBarWidgetState extends State<NavBarWidget>
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(builder: (context, model, child) {
       return BottomNavigationBar(
-        fixedColor: model.accentColor,
+        fixedColor: accentPrimaryColor,
         currentIndex: currentIndex,
         unselectedItemColor:
             model.type == ThemeType.dark ? Colors.white38 : Colors.white,
@@ -25,22 +25,22 @@ class _NavBarWidgetState extends State<NavBarWidget>
           BottomNavigationBarItem(
             icon: Icon(Icons.games_outlined),
             label: 'Games',
-            backgroundColor: model.globalColor,
+            backgroundColor: model.primaryColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.movie_creation_outlined),
             label: 'Movies',
-            backgroundColor: model.globalColor,
+            backgroundColor: model.primaryColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.laptop_chromebook_outlined),
             label: 'Serials',
-            backgroundColor: model.globalColor,
+            backgroundColor: model.primaryColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             label: 'Settings',
-            backgroundColor: model.globalColor,
+            backgroundColor: model.primaryColor,
           ),
         ],
         onTap: (int index) {
