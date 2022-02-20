@@ -18,6 +18,7 @@ dependencies:
   dotenv: ^3.0.0
   rive: ^0.8.1
   flutter_svg: ^1.0.3
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:

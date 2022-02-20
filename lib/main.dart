@@ -1,4 +1,6 @@
+import 'package:black_tortoise/backend/api.dart';
 import 'package:black_tortoise/backend/auth.dart';
+import 'package:black_tortoise/models/content.dart';
 import 'package:black_tortoise/models/login.dart';
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
@@ -13,6 +15,7 @@ import 'routes/search.dart';
 
 void main() {
   Tokens.loadEnv();
+  Api.init();
   Auth();
   runApp(MyApp());
 }
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ThemeModel()),
         ChangeNotifierProvider(create: (context) => PageModel()),
         ChangeNotifierProvider(create: (context) => LoginModel()),
+        ChangeNotifierProvider(create: (context) => ContentModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (builder, model, child) {
