@@ -1,3 +1,4 @@
+import 'package:black_tortoise/models/theme.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -30,18 +31,18 @@ class AppBarWidget extends StatelessWidget {
 }
 
 class TitleText extends StatelessWidget {
-  final textGradient = LinearGradient(colors: <Color>[
-    Color(0xff4240e1),
-    Color(0xff8c8cef),
-  ]).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+  final textGradient =
+      accentGradient.createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   @override
   Widget build(BuildContext context) {
-    return Text('FlixCard',
-        style: TextStyle(
-          fontSize: 21,
-          fontWeight: FontWeight.bold,
-          foreground: Paint()..shader = textGradient,
-        ));
+    return Text(
+      'FlixCard',
+      style: TextStyle(
+        fontSize: 21,
+        fontWeight: FontWeight.bold,
+        foreground: Paint()..shader = textGradient,
+      ),
+    );
   }
 }

@@ -17,7 +17,7 @@ class _NavBarWidgetState extends State<NavBarWidget>
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(builder: (context, model, child) {
       return BottomNavigationBar(
-        fixedColor: accentPrimaryColor,
+        fixedColor: accentSecondaryColor,
         currentIndex: currentIndex,
         unselectedItemColor:
             model.type == ThemeType.dark ? Colors.white38 : Colors.white,

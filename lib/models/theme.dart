@@ -33,7 +33,7 @@ final darkTheme = ThemeData(
   primaryColor: primaryDarkColor,
   scaffoldBackgroundColor: primaryDarkColor,
   splashColor: accentPrimaryColor,
-  appBarTheme: AppBarTheme(color: secondaryDarkColor),
+  appBarTheme: AppBarTheme(color: primaryDarkColor),
   snackBarTheme: SnackBarThemeData(
     backgroundColor: accentPrimaryColor,
     behavior: SnackBarBehavior.floating,
