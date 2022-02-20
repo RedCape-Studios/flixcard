@@ -104,6 +104,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             if (value!.isEmpty) {
                               return "Please enter your password";
                             }
+                            return "";
                           },
                           label: 'Password',
                           model: themeModel,
