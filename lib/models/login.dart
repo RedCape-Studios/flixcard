@@ -6,10 +6,10 @@ class LoginModel extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmController = TextEditingController();
 
-  bool login = true;
+  bool isLogin = true;
 
   void switchPage() {
-    login = !login;
+    isLogin = !isLogin;
     notifyListeners();
   }
 }

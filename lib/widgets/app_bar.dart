@@ -1,3 +1,4 @@
+import 'package:black_tortoise/models/theme.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -12,13 +13,17 @@ class AppBarWidget extends StatelessWidget {
           onPressed: () => Navigator.of(context).pushNamed('/favourites'),
         ),
       ),
-      title: Align(alignment: Alignment.center, child: TitleText()),
+      centerTitle: true,
+      title: TitleText(),
       actions: [
-        Hero(
-          tag: 'search',
-          child: IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => Navigator.of(context).pushNamed('/search'),
+        Padding(
+          padding: const EdgeInsets.only(right: 10.0),
+          child: Hero(
+            tag: 'search',
+            child: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () => Navigator.of(context).pushNamed('/search'),
+            ),
           ),
         ),
       ],
@@ -30,18 +35,18 @@ class AppBarWidget extends StatelessWidget {
 }
 
 class TitleText extends StatelessWidget {
-  final textGradient = LinearGradient(colors: <Color>[
-    Color(0xffDA44bb),
-    Color(0xff8921aa),
-  ]).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+  final textGradient =
+      accentGradient.createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   @override
   Widget build(BuildContext context) {
-    return Text('FlixCard',
-        style: TextStyle(
-          fontSize: 21,
-          fontWeight: FontWeight.bold,
-          foreground: Paint()..shader = textGradient,
-        ));
+    return Text(
+      'FlixCard',
+      style: TextStyle(
+        fontSize: 21,
+        fontWeight: FontWeight.bold,
+        foreground: Paint()..shader = textGradient,
+      ),
+    );
   }
 }
