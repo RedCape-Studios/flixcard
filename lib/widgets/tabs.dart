@@ -1,5 +1,6 @@
 import 'package:black_tortoise/backend/api.dart';
 import 'package:black_tortoise/models/theme.dart';
+import 'package:black_tortoise/routes/content.dart';
 import 'package:dotenv/dotenv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,14 @@ class ContentTabWidget extends StatelessWidget {
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(15),
-            onTap: () => print('hello'),
+            onTap: () => Navigator.of(context).push(
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    ContentRoute(
+                  heading: info.title,
+                ),
+              ),
+            ),
             child: TabContents(info),
           ),
         );
