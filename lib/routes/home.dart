@@ -20,7 +20,7 @@ class _HomeRouteState extends State<HomeRoute> {
   }
 
   void _scrollListener() {
-    print(scrollController.position.extentAfter);
+    // print(scrollController.position.extentAfter);
     if (scrollController.position.extentAfter < 50) {
       Provider.of<ContentModel>(context, listen: false).addContents();
     }

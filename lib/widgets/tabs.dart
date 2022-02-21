@@ -1,10 +1,11 @@
+import 'package:black_tortoise/backend/api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContentTabWidget extends StatelessWidget {
-  final StatelessWidget child;
+  final ApiResult info;
 
-  ContentTabWidget({required this.child});
+  ContentTabWidget({required this.info});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ContentTabWidget extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
           onTap: () => print('hello'),
-          child: child,
+          child: TabContents(),
         ),
       ),
     );
@@ -27,6 +28,8 @@ class ContentTabWidget extends StatelessWidget {
 }
 
 class TabContents extends StatelessWidget {
+  TabContents();
+
   @override
   Widget build(BuildContext context) {
     return Container(

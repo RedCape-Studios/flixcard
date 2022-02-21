@@ -1,8 +1,38 @@
 import 'package:black_tortoise/utils/constants.dart';
 import 'package:dio/dio.dart';
 
+abstract class ApiResult {}
+
+class MovieApiResult implements ApiResult {
+  final bool adult;
+  final String image;
+  final String title;
+  final String desc;
+  final String releaseDate;
+  final String score;
+  final String scoreCount;
+
+  const MovieApiResult({
+    required this.adult,
+    required this.image,
+    required this.title,
+    required this.desc,
+    required this.releaseDate,
+    required this.score,
+    required this.scoreCount,
+  });
+}
+
+class SerialApiResult implements ApiResult {
+  SerialApiResult();
+}
+
+class GameApiResult implements ApiResult {
+  GameApiResult();
+}
+
 class Api {
-  static const movieUrl = 'https://api.themoviedb.org/3/movie/';
+  static const movieUrl = 'https://api.themoviedb.org/3/movie/now_playing';
   static const seriesUrl = '';
   static const gameUrl = '';
 
@@ -12,16 +42,27 @@ class Api {
     dio = Dio();
   }
 
-  static Future<void> fetch() async {
+  static Stream<MovieApiResult> fetch() async* {
     final res = await dio.get(
       movieUrl,
       queryParameters: {
-        'api_key': Tokens.movieKey,
+        'api_key': '',
         'language': 'en-US',
         'page': 1,
       },
     );
 
-    print(res.data);
+    final List results = res.data['results'];
+    for (final element in results) {
+      yield MovieApiResult(
+        adult: element['adult'],
+        image: element['poster_path'],
+        title: element['original_title'],
+        desc: element['overview'],
+        releaseDate: element['release_date'],
+        score: element['vote_average'],
+        scoreCount: element['vote_count'],
+      );
+    }
   }
 }
