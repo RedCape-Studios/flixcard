@@ -1,16 +1,33 @@
-import 'package:black_tortoise/utils/constants.dart';
 import 'package:dio/dio.dart';
 
-abstract class ApiResult {}
-
-class MovieApiResult implements ApiResult {
+abstract class ApiResult {
   final bool adult;
-  final String image;
+  final String? image;
   final String title;
   final String desc;
   final String releaseDate;
-  final String score;
-  final String scoreCount;
+  final double score;
+  final int scoreCount;
+
+  const ApiResult({
+    required this.adult,
+    required this.image,
+    required this.title,
+    required this.desc,
+    required this.releaseDate,
+    required this.score,
+    required this.scoreCount,
+  });
+}
+
+class MovieApiResult implements ApiResult {
+  final bool adult;
+  final String? image;
+  final String title;
+  final String desc;
+  final String releaseDate;
+  final double score;
+  final int scoreCount;
 
   const MovieApiResult({
     required this.adult,
@@ -24,11 +41,43 @@ class MovieApiResult implements ApiResult {
 }
 
 class SerialApiResult implements ApiResult {
-  SerialApiResult();
+  final bool adult;
+  final String? image;
+  final String title;
+  final String desc;
+  final String releaseDate;
+  final double score;
+  final int scoreCount;
+
+  const SerialApiResult({
+    required this.adult,
+    required this.image,
+    required this.title,
+    required this.desc,
+    required this.releaseDate,
+    required this.score,
+    required this.scoreCount,
+  });
 }
 
 class GameApiResult implements ApiResult {
-  GameApiResult();
+  final bool adult;
+  final String? image;
+  final String title;
+  final String desc;
+  final String releaseDate;
+  final double score;
+  final int scoreCount;
+
+  const GameApiResult({
+    required this.adult,
+    required this.image,
+    required this.title,
+    required this.desc,
+    required this.releaseDate,
+    required this.score,
+    required this.scoreCount,
+  });
 }
 
 class Api {
@@ -42,26 +91,28 @@ class Api {
     dio = Dio();
   }
 
-  static Stream<MovieApiResult> fetch() async* {
+  static Stream<MovieApiResult> fetch(int page) async* {
     final res = await dio.get(
       movieUrl,
       queryParameters: {
         'api_key': '',
         'language': 'en-US',
-        'page': 1,
+        'page': page,
       },
     );
 
     final List results = res.data['results'];
     for (final element in results) {
+      print(element['poster_path']);
+
       yield MovieApiResult(
         adult: element['adult'],
         image: element['poster_path'],
         title: element['original_title'],
         desc: element['overview'],
         releaseDate: element['release_date'],
-        score: element['vote_average'],
-        scoreCount: element['vote_count'],
+        score: double.parse(element['vote_average'].toString()),
+        scoreCount: int.parse(element['vote_count'].toString()),
       );
     }
   }

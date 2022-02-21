@@ -7,7 +7,7 @@ class SerialsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildListDelegate(
-        [ContentTabWidget(info: SerialApiResult())],
+        [],
       ),
     );
   }

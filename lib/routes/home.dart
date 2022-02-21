@@ -46,6 +46,10 @@ class _HomeRouteState extends State<HomeRoute> {
           }),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.arrow_upward),
+      ),
     );
   }
 }
