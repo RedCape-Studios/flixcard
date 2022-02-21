@@ -1,5 +1,9 @@
 import 'package:black_tortoise/models/content.dart';
 import 'package:black_tortoise/models/pages.dart';
+import 'package:black_tortoise/routes/pages/games.dart';
+import 'package:black_tortoise/routes/pages/movies.dart';
+import 'package:black_tortoise/routes/pages/serials.dart';
+import 'package:black_tortoise/routes/pages/settings.dart';
 import 'package:black_tortoise/widgets/app_bar.dart';
 import 'package:black_tortoise/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +15,7 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute> {
+  final _pageList = [GamesPage(), MoviesPage(), SerialsPage(), SettingsPage()];
   late final ScrollController scrollController;
   var isVisible = false;
 
@@ -51,7 +56,7 @@ class _HomeRouteState extends State<HomeRoute> {
         slivers: [
           AppBarWidget(),
           Consumer<PageModel>(builder: (context, model, child) {
-            return model.page;
+            return _pageList[model.pageIndex];
           }),
         ],
       ),
