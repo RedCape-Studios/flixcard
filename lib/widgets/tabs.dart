@@ -26,10 +26,25 @@ class ContentTabWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             onTap: () => Navigator.of(context).push(
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    ContentRoute(
-                  heading: info.title,
-                ),
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return ContentRoute(
+                    heading: info.title,
+                  );
+                },
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = 0.0;
+                  const end = 1.0;
+                  const curve = Curves.ease;
+                  var tween = Tween(begin: begin, end: end)
+                      .chain(CurveTween(curve: curve));
+
+                  return ScaleTransition(
+                    // scale: animation.drive(tween),
+                    scale: animation.drive(tween),
+                    child: child,
+                  );
+                },
               ),
             ),
             child: TabContents(info),
@@ -63,7 +78,10 @@ class TabContents extends StatelessWidget {
                 bottomLeft: Radius.circular(15),
               ),
               child: Image.network(
-                'https://image.tmdb.org/t/p/w500${info.image}',
+                'https://image.tmdb.org/t/p/w500${info.posterImage}',
+                errorBuilder: (context, error, stackTrace) => Center(
+                  child: Icon(Icons.error_outline, size: 100),
+                ),
                 fit: BoxFit.cover,
               ),
             ),

@@ -23,7 +23,7 @@ final textLightColor = Color.fromARGB(255, 5, 5, 5);
 
 final darkTextStyle = TextStyle(
   fontFamily: 'Montserrat',
-  fontSize: 18,
+  fontSize: 15,
   fontWeight: FontWeight.normal,
   color: textDarkColor,
 );
@@ -40,12 +40,18 @@ final darkTheme = ThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
   textTheme: TextTheme(
-    headline1: darkTextStyle,
-    headline2: darkTextStyle,
-    headline3: darkTextStyle,
-    headline4: darkTextStyle,
-    headline5: darkTextStyle,
-    headline6: darkTextStyle,
+    displayLarge: darkTextStyle,
+    displayMedium: darkTextStyle,
+    displaySmall: darkTextStyle,
+    headlineLarge: darkTextStyle,
+    headlineMedium: darkTextStyle,
+    headlineSmall: darkTextStyle,
+    titleLarge: darkTextStyle,
+    titleMedium: darkTextStyle,
+    titleSmall: darkTextStyle,
+    bodyLarge: darkTextStyle,
+    bodyMedium: darkTextStyle,
+    bodySmall: darkTextStyle,
   ),
 );
 

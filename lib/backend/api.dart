@@ -2,18 +2,22 @@ import 'package:dio/dio.dart';
 
 abstract class ApiResult {
   final bool adult;
-  final String? image;
+  final String? posterImage;
+  final String? backdropImage;
   final String title;
   final String desc;
+  final String lang;
   final String releaseDate;
   final double score;
   final int scoreCount;
 
   const ApiResult({
     required this.adult,
-    required this.image,
+    required this.posterImage,
+    required this.backdropImage,
     required this.title,
     required this.desc,
+    required this.lang,
     required this.releaseDate,
     required this.score,
     required this.scoreCount,
@@ -22,18 +26,22 @@ abstract class ApiResult {
 
 class MovieApiResult implements ApiResult {
   final bool adult;
-  final String? image;
+  final String? posterImage;
+  final String? backdropImage;
   final String title;
   final String desc;
+  final String lang;
   final String releaseDate;
   final double score;
   final int scoreCount;
 
   const MovieApiResult({
     required this.adult,
-    required this.image,
+    required this.posterImage,
+    required this.backdropImage,
     required this.title,
     required this.desc,
+    required this.lang,
     required this.releaseDate,
     required this.score,
     required this.scoreCount,
@@ -42,18 +50,22 @@ class MovieApiResult implements ApiResult {
 
 class SerialApiResult implements ApiResult {
   final bool adult;
-  final String? image;
+  final String? posterImage;
+  final String? backdropImage;
   final String title;
   final String desc;
+  final String lang;
   final String releaseDate;
   final double score;
   final int scoreCount;
 
   const SerialApiResult({
     required this.adult,
-    required this.image,
+    required this.posterImage,
+    required this.backdropImage,
     required this.title,
     required this.desc,
+    required this.lang,
     required this.releaseDate,
     required this.score,
     required this.scoreCount,
@@ -62,18 +74,22 @@ class SerialApiResult implements ApiResult {
 
 class GameApiResult implements ApiResult {
   final bool adult;
-  final String? image;
+  final String? posterImage;
+  final String? backdropImage;
   final String title;
   final String desc;
+  final String lang;
   final String releaseDate;
   final double score;
   final int scoreCount;
 
   const GameApiResult({
     required this.adult,
-    required this.image,
+    required this.posterImage,
+    required this.backdropImage,
     required this.title,
     required this.desc,
+    required this.lang,
     required this.releaseDate,
     required this.score,
     required this.scoreCount,
@@ -105,9 +121,11 @@ class Api {
     for (final element in results) {
       yield MovieApiResult(
         adult: element['adult'],
-        image: element['poster_path'],
+        posterImage: element['poster_path'],
+        backdropImage: element['backdrop_path'],
         title: element['original_title'],
         desc: element['overview'],
+        lang: element['original_language'],
         releaseDate: element['release_date'],
         score: double.parse(element['vote_average'].toString()),
         scoreCount: int.parse(element['vote_count'].toString()),
