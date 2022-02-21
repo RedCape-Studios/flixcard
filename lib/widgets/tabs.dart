@@ -49,9 +49,15 @@ class TabContents extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Image.network(
-              'https://image.tmdb.org/t/p/w500${info.image}',
-              fit: BoxFit.fitWidth,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+              ),
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w500${info.image}',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Expanded(

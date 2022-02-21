@@ -12,6 +12,7 @@ class HomeRoute extends StatefulWidget {
 
 class _HomeRouteState extends State<HomeRoute> {
   late final ScrollController scrollController;
+  var isVisible = false;
 
   @override
   void initState() {
@@ -20,6 +21,14 @@ class _HomeRouteState extends State<HomeRoute> {
   }
 
   void _scrollListener() {
+    setState(() {
+      if ((scrollController.position.extentBefore > 1000)) {
+        isVisible = true;
+      } else {
+        isVisible = false;
+      }
+    });
+
     // print(scrollController.position.extentAfter);
     if (scrollController.position.extentAfter < 50) {
       Provider.of<ContentModel>(context, listen: false).addContents();
@@ -46,9 +55,14 @@ class _HomeRouteState extends State<HomeRoute> {
           }),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.arrow_upward),
+      floatingActionButton: Visibility(
+        visible: isVisible,
+        child: FloatingActionButton(
+          onPressed: () {
+            scrollController.jumpTo(0);
+          },
+          child: Icon(Icons.arrow_upward),
+        ),
       ),
     );
   }

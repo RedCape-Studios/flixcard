@@ -103,8 +103,6 @@ class Api {
 
     final List results = res.data['results'];
     for (final element in results) {
-      print(element['poster_path']);
-
       yield MovieApiResult(
         adult: element['adult'],
         image: element['poster_path'],
