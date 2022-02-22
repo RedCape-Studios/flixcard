@@ -78,12 +78,11 @@ class TabContents extends StatelessWidget {
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15),
               ),
-              child: Image.network(
-                'https://image.tmdb.org/t/p/w500${info.posterImage}',
-                errorBuilder: (context, error, stackTrace) => Center(
-                  child: Icon(Icons.error_outline, size: 100),
-                ),
+              child: FadeInImage.assetNetwork(
+                placeholder: 'lib/assets/images/placeholder.png',
+                image: 'https://image.tmdb.org/t/p/w500${info.posterImage}',
                 fit: BoxFit.cover,
+                placeholderFit: BoxFit.contain,
               ),
             ),
           ),

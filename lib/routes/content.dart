@@ -16,11 +16,11 @@ class ContentRoute extends StatelessWidget {
         ),
         title: Text(heading),
       ),
-      body: Image.network(
-        'https://image.tmdb.org/t/p/w500$backdropImage',
-        errorBuilder: (context, error, stackTrace) => Center(
-          child: Icon(Icons.error_outline, size: 100),
-        ),
+      body: FadeInImage.assetNetwork(
+        placeholder: 'lib/assets/images/placeholder.png',
+        image: 'https://image.tmdb.org/t/p/w500$backdropImage',
+        fit: BoxFit.contain,
+        placeholderFit: BoxFit.contain,
       ),
     );
   }

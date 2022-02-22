@@ -108,6 +108,8 @@ class Api {
   }
 
   static Stream<MovieApiResult> fetch(int page) async* {
+    print(page);
+
     late final res;
     try {
       res = await dio.get(

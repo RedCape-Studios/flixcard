@@ -30,6 +30,7 @@ flutter:
   assets:
     - lib/assets/animations/dark_bg.riv
     - lib/assets/images/dark_bg.svg
+    - lib/assets/images/placeholder.png
 
   fonts:
    - family: Montserrat
