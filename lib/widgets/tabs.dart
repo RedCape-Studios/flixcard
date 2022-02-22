@@ -29,6 +29,7 @@ class ContentTabWidget extends StatelessWidget {
                 pageBuilder: (context, animation, secondaryAnimation) {
                   return ContentRoute(
                     heading: info.title,
+                    backdropImage: info.backdropImage,
                   );
                 },
                 transitionsBuilder:
