@@ -8,7 +8,7 @@ class ContentModel extends ChangeNotifier {
   final List<ApiResult> gameList = [];
   var movieCount = 0;
 
-  void addContents(PageEnum page) async {
+  Future<void> addContents(PageEnum page) async {
     if (page == PageEnum.MoviesPage) {
       movieCount++;
 

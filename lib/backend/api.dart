@@ -108,8 +108,6 @@ class Api {
   }
 
   static Stream<MovieApiResult> fetch(int page) async* {
-    print(page);
-
     late final res;
     try {
       res = await dio.get(
@@ -125,7 +123,7 @@ class Api {
       print(err.response?.statusCode);
     }
 
-    final List results = res.data!['results'];
+    final List results = res.data['results'];
     for (final element in results) {
       yield MovieApiResult(
         adult: element['adult'],
