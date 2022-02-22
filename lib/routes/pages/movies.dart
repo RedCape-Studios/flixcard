@@ -1,4 +1,5 @@
 import 'package:black_tortoise/models/content.dart';
+import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/widgets/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,8 @@ class _MoviesPageState extends State<MoviesPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ContentModel>(context, listen: false).addContents();
+    Provider.of<ContentModel>(context, listen: false)
+        .addContents(PageEnum.MoviesPage);
   }
 
   @override

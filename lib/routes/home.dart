@@ -36,7 +36,10 @@ class _HomeRouteState extends State<HomeRoute> {
 
     // print(scrollController.position.extentAfter);
     if (scrollController.position.extentAfter < 50) {
-      Provider.of<ContentModel>(context, listen: false).addContents();
+      Provider.of<ContentModel>(context, listen: false).addContents(
+        PageEnum
+            .values[Provider.of<PageModel>(context, listen: false).pageIndex],
+      );
     }
   }
 

@@ -108,16 +108,24 @@ class Api {
   }
 
   static Stream<MovieApiResult> fetch(int page) async* {
-    final res = await dio.get(
-      movieUrl,
-      queryParameters: {
-        'api_key': '',
-        'language': 'en-US',
-        'page': page,
-      },
-    );
+    print(page);
 
-    final List results = res.data['results'];
+    late final res;
+    try {
+      res = await dio.get(
+        movieUrl,
+        queryParameters: {
+          'api_key': '',
+          'language': 'en-US',
+          'page': page,
+        },
+      );
+    } on DioError catch (err) {
+      print(err.message);
+      print(err.response?.statusCode);
+    }
+
+    final List results = res.data!['results'];
     for (final element in results) {
       yield MovieApiResult(
         adult: element['adult'],
