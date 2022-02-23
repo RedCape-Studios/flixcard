@@ -1,7 +1,6 @@
 import 'package:black_tortoise/backend/api.dart';
 import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/content.dart';
-import 'package:dotenv/dotenv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

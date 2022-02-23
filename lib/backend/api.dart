@@ -1,3 +1,4 @@
+import 'package:black_tortoise/constants.dart';
 import 'package:dio/dio.dart';
 
 abstract class ApiResult {
@@ -115,7 +116,7 @@ class Api {
       res = await dio.get(
         movieUrl,
         queryParameters: {
-          'api_key': '',
+          'api_key': Tokens.movieKey,
           'language': 'en-US',
           'page': page,
         },

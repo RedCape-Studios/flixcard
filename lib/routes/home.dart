@@ -67,7 +67,10 @@ class _HomeRouteState extends State<HomeRoute> {
           displacement: 100,
           child: CustomScrollView(
             controller: scrollController,
-            slivers: [AppBarWidget(), _pageList[pageModel.pageIndex]],
+            slivers: [
+              AppBarWidget(),
+              _pageList[pageModel.pageIndex],
+            ],
           ),
         );
       }),
