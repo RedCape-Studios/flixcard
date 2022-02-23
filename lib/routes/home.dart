@@ -1,5 +1,6 @@
 import 'package:black_tortoise/models/content.dart';
 import 'package:black_tortoise/models/pages.dart';
+import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/pages/games.dart';
 import 'package:black_tortoise/routes/pages/movies.dart';
 import 'package:black_tortoise/routes/pages/serials.dart';
@@ -54,15 +55,22 @@ class _HomeRouteState extends State<HomeRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavBarWidget(),
-      body: CustomScrollView(
-        controller: scrollController,
-        slivers: [
-          AppBarWidget(),
-          Consumer<PageModel>(builder: (context, model, child) {
-            return _pageList[model.pageIndex];
-          }),
-        ],
-      ),
+      body: Consumer2<PageModel, ThemeModel>(
+          builder: (context, pageModel, themeModel, child) {
+        return RefreshIndicator(
+          onRefresh: () =>
+              Provider.of<ContentModel>(context, listen: false).refresh(
+            PageEnum.values[pageModel.pageIndex],
+          ),
+          color: accentPrimaryColor,
+          backgroundColor: themeModel.secondaryColor,
+          displacement: 100,
+          child: CustomScrollView(
+            controller: scrollController,
+            slivers: [AppBarWidget(), _pageList[pageModel.pageIndex]],
+          ),
+        );
+      }),
       floatingActionButton: Visibility(
         visible: isVisible,
         child: FloatingActionButton(

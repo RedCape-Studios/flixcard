@@ -19,4 +19,15 @@ class ContentModel extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> refresh(PageEnum page) async {
+    if (page == PageEnum.MoviesPage) {
+      movieList.clear();
+      movieCount = 0;
+
+      notifyListeners();
+
+      await addContents(page);
+    }
+  }
 }

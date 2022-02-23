@@ -8,7 +8,7 @@ enum PageEnum {
 }
 
 class PageModel extends ChangeNotifier {
-  var pageIndex = 0;
+  int pageIndex = 0;
 
   void changePage(int index) {
     pageIndex = index;
