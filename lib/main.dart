@@ -1,18 +1,21 @@
+import 'package:black_tortoise/backend/api.dart';
 import 'package:black_tortoise/backend/auth.dart';
+import 'package:black_tortoise/models/content.dart';
 import 'package:black_tortoise/models/login.dart';
 import 'package:black_tortoise/models/pages.dart';
 import 'package:black_tortoise/models/theme.dart';
 import 'package:black_tortoise/routes/favourites.dart';
 import 'package:black_tortoise/routes/home.dart';
 import 'package:black_tortoise/routes/login.dart';
-import 'package:black_tortoise/utils/constants.dart';
+import 'package:black_tortoise/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'routes/search.dart';
 
-void main() {
-  Tokens.loadEnv();
+void main() async {
+  await Tokens.loadEnv();
+  Api.init();
   Auth();
   runApp(MyApp());
 }
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ThemeModel()),
         ChangeNotifierProvider(create: (context) => PageModel()),
         ChangeNotifierProvider(create: (context) => LoginModel()),
+        ChangeNotifierProvider(create: (context) => ContentModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (builder, model, child) {

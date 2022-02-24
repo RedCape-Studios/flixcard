@@ -15,9 +15,10 @@ dependencies:
   provider: ^6.0.2
   cupertino_icons: ^1.0.4
   supabase: ^0.2.14
-  dotenv: ^3.0.0
   rive: ^0.8.1
   flutter_svg: ^1.0.3
+  dio: ^4.0.4
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,8 @@ flutter:
   assets:
     - lib/assets/animations/dark_bg.riv
     - lib/assets/images/dark_bg.svg
+    - lib/assets/images/placeholder.png
+    - .env
 
   fonts:
    - family: Montserrat

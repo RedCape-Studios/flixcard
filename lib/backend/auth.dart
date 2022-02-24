@@ -1,4 +1,4 @@
-import 'package:black_tortoise/utils/constants.dart';
+import 'package:black_tortoise/constants.dart';
 import 'package:supabase/supabase.dart';
 
 class Auth {

@@ -1,15 +1,17 @@
-import 'package:black_tortoise/routes/pages/games.dart';
-import 'package:black_tortoise/routes/pages/movies.dart';
-import 'package:black_tortoise/routes/pages/serials.dart';
-import 'package:black_tortoise/routes/pages/settings.dart';
 import 'package:flutter/cupertino.dart';
 
+enum PageEnum {
+  GamesPage,
+  MoviesPage,
+  SerialsPage,
+  SettingsPage,
+}
+
 class PageModel extends ChangeNotifier {
-  final _pageList = [GamesPage(), MoviesPage(), SerialsPage(), SettingsPage()];
-  Widget page = GamesPage();
+  int pageIndex = 0;
 
   void changePage(int index) {
-    page = _pageList[index];
+    pageIndex = index;
     notifyListeners();
   }
 }
